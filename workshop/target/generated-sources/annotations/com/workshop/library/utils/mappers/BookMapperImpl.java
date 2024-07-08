@@ -16,8 +16,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-06-21T13:34:51-0500",
-    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.38.0.v20240524-2033, environment: Java 17.0.11 (Eclipse Adoptium)"
+    date = "2024-07-08T11:00:47-0500",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.39.0.v20240620-1855, environment: Java 17.0.11 (Eclipse Adoptium)"
 )
 @Component
 public class BookMapperImpl implements BookMapper {
@@ -28,16 +28,16 @@ public class BookMapperImpl implements BookMapper {
             return null;
         }
 
-        Book.BookBuilder book = Book.builder();
+        Book book = new Book();
 
-        book.author( bookRequest.getAuthor() );
-        book.genre( bookRequest.getGenre() );
-        book.id( bookRequest.getId() );
-        book.isbn( bookRequest.getIsbn() );
-        book.publicationYear( bookRequest.getPublicationYear() );
-        book.title( bookRequest.getTitle() );
+        book.setAuthor( bookRequest.getAuthor() );
+        book.setGenre( bookRequest.getGenre() );
+        book.setId( bookRequest.getId() );
+        book.setIsbn( bookRequest.getIsbn() );
+        book.setPublicationYear( bookRequest.getPublicationYear() );
+        book.setTitle( bookRequest.getTitle() );
 
-        return book.build();
+        return book;
     }
 
     @Override

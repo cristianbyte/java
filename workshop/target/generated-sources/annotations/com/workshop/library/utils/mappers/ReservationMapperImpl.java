@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-06-21T13:34:51-0500",
-    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.38.0.v20240524-2033, environment: Java 17.0.11 (Eclipse Adoptium)"
+    date = "2024-07-08T11:00:47-0500",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.39.0.v20240620-1855, environment: Java 17.0.11 (Eclipse Adoptium)"
 )
 @Component
 public class ReservationMapperImpl implements ReservationMapper {
@@ -81,11 +81,11 @@ public class ReservationMapperImpl implements ReservationMapper {
             return null;
         }
 
-        User.UserBuilder user = User.builder();
+        User user = new User();
 
-        user.id( reservationRequest.getUserId() );
+        user.setId( reservationRequest.getUserId() );
 
-        return user.build();
+        return user;
     }
 
     protected Book reservationRequestToBook(ReservationRequest reservationRequest) {
@@ -93,11 +93,11 @@ public class ReservationMapperImpl implements ReservationMapper {
             return null;
         }
 
-        Book.BookBuilder book = Book.builder();
+        Book book = new Book();
 
-        book.id( reservationRequest.getBookId() );
+        book.setId( reservationRequest.getBookId() );
 
-        return book.build();
+        return book;
     }
 
     protected BookResponse bookToBookResponse(Book book) {

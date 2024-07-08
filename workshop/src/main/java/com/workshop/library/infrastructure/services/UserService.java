@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.workshop.library.api.dto.request.UserRequest;
 import com.workshop.library.api.dto.response.UserOnlyLoans;
 import com.workshop.library.api.dto.response.UserOnlyReservations;
+import com.workshop.library.api.dto.response.UserResponse;
 import com.workshop.library.api.dto.response.UserResponseFull;
 import com.workshop.library.domain.entities.User;
 import com.workshop.library.domain.repositories.UserRepository;
@@ -32,10 +33,10 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserResponseFull create(UserRequest request) {
+    public UserResponse createNew(UserRequest request) {
         User userToCreate = this.userMapper.requestToEntity(request);
         User userSaved = this.userRepository.save(userToCreate);
-        return this.userMapper.entityToResponseFull(userSaved);
+        return this.userMapper.entityToResponse(userSaved);
     }
 
     @Override
@@ -51,7 +52,6 @@ public class UserService implements IUserService {
     public void delete(Long id) {
         this.findById(id);
         this.userRepository.deleteById(id);
-        return;
     }
     
     @Override
@@ -66,6 +66,12 @@ public class UserService implements IUserService {
     
     private User findById(Long id){
         return this.userRepository.findById(id).orElseThrow(() -> new BadRequestException(ErrorMessage.idNotFound("user")));
+    }
+
+    @Override
+    public UserResponseFull create(UserRequest request) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'create'");
     }
 
     

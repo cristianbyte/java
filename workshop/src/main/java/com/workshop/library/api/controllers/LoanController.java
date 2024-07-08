@@ -3,6 +3,9 @@ package com.workshop.library.api.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +19,6 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
 
 @RestController
 @RequestMapping(path = "/loans")
@@ -31,7 +30,7 @@ public class LoanController {
   
   //creating a loan
   @PostMapping
-  public ResponseEntity<LoanResponse> create(@Validated @RequestBody LoanRequest request){
+  public ResponseEntity<LoanResponse> create(@RequestBody LoanRequest request){
     return ResponseEntity.ok(this.loanService.create(request));
   }
   // get information about a loan

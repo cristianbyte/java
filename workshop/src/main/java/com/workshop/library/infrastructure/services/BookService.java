@@ -42,9 +42,9 @@ public class BookService implements IBookService {
     @Override
     public BookResponse update(Long id, BookRequest request) {
 
-        this.find(id);
+        Book reference = this.find(id);
         Book bookToUpdate = this.bookMapper.RequestToBook(request);
-        bookToUpdate.setId(id);
+        bookToUpdate.setId(reference.getId());
         Book bookSaved = this.bookRepository.save(bookToUpdate);
         return this.bookMapper.BookToResponse(bookSaved);
 
@@ -60,14 +60,14 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public Page<BookResponse> getAll(int page, int size) {
+    public Page<BookResponse> getAll(int page, int size, String author, String title, String genre) {
 
         if (page < 0)
             page = 0;
 
         PageRequest pagination = PageRequest.of(page, size);
 
-        return this.bookRepository.findAll(pagination).map(bookMapper::BookToResponse);
+        return this.bookRepository.findByCriteria(author,title, genre, pagination).map(bookMapper::BookToResponse);
 
     }
 

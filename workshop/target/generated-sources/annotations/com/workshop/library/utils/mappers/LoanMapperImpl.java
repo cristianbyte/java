@@ -5,13 +5,14 @@ import com.workshop.library.api.dto.response.LoanResponse;
 import com.workshop.library.domain.entities.Book;
 import com.workshop.library.domain.entities.Loan;
 import com.workshop.library.domain.entities.User;
+import com.workshop.library.utils.enums.StatusType;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-06-21T13:34:51-0500",
-    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.38.0.v20240524-2033, environment: Java 17.0.11 (Eclipse Adoptium)"
+    date = "2024-07-08T11:00:47-0500",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.39.0.v20240620-1855, environment: Java 17.0.11 (Eclipse Adoptium)"
 )
 @Component
 public class LoanMapperImpl implements LoanMapper {
@@ -28,7 +29,9 @@ public class LoanMapperImpl implements LoanMapper {
         loan.book( loanRequestToBook( request ) );
         loan.loanDate( request.getLoanDate() );
         loan.returnDate( request.getReturnDate() );
-        loan.status( request.getStatus() );
+        if ( request.getStatus() != null ) {
+            loan.status( Enum.valueOf( StatusType.class, request.getStatus() ) );
+        }
 
         return loan.build();
     }
@@ -58,7 +61,12 @@ public class LoanMapperImpl implements LoanMapper {
 
         loan.setLoanDate( request.getLoanDate() );
         loan.setReturnDate( request.getReturnDate() );
-        loan.setStatus( request.getStatus() );
+        if ( request.getStatus() != null ) {
+            loan.setStatus( Enum.valueOf( StatusType.class, request.getStatus() ) );
+        }
+        else {
+            loan.setStatus( null );
+        }
     }
 
     protected User loanRequestToUser(LoanRequest loanRequest) {
@@ -66,11 +74,11 @@ public class LoanMapperImpl implements LoanMapper {
             return null;
         }
 
-        User.UserBuilder user = User.builder();
+        User user = new User();
 
-        user.id( loanRequest.getUser_id() );
+        user.setId( loanRequest.getUser_id() );
 
-        return user.build();
+        return user;
     }
 
     protected Book loanRequestToBook(LoanRequest loanRequest) {
@@ -78,11 +86,11 @@ public class LoanMapperImpl implements LoanMapper {
             return null;
         }
 
-        Book.BookBuilder book = Book.builder();
+        Book book = new Book();
 
-        book.id( loanRequest.getBook_id() );
+        book.setId( loanRequest.getBook_id() );
 
-        return book.build();
+        return book;
     }
 
     private Long loanUserId(Loan loan) {

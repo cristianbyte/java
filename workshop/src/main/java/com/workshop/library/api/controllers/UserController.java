@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.workshop.library.api.dto.request.UserRequest;
 import com.workshop.library.api.dto.response.UserOnlyLoans;
 import com.workshop.library.api.dto.response.UserOnlyReservations;
+import com.workshop.library.api.dto.response.UserResponse;
 import com.workshop.library.api.dto.response.UserResponseFull;
 import com.workshop.library.infrastructure.abstract_services.IUserService;
 
@@ -26,8 +27,8 @@ public class UserController {
     @Autowired
     private final IUserService userService;
 
-    @GetMapping(path = "/{id}")
-    public ResponseEntity<UserResponseFull> get(@PathVariable(name = "id") Long id){
+    @GetMapping(path = "/{user_id}")
+    public ResponseEntity<UserResponseFull> get(@PathVariable(name = "user_id") Long id){
         return ResponseEntity.ok(this.userService.getById(id));
     }
 
@@ -42,17 +43,17 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponseFull> create(UserRequest request){
-        return ResponseEntity.ok(this.userService.create(request));
+    public ResponseEntity<UserResponse> create(UserRequest request){
+        return ResponseEntity.ok(this.userService.createNew(request));
     }
 
-    @PutMapping(path = "/{id}")
-    public ResponseEntity<UserResponseFull> update(@PathVariable(name = "id") Long id, UserRequest request){
+    @PutMapping(path = "/{user_id}")
+    public ResponseEntity<UserResponseFull> update(@PathVariable(name = "user_id") Long id, UserRequest request){
         return ResponseEntity.ok(this.userService.update(id, request));
     }
 
-    @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable(name = "id") Long id){
+    @DeleteMapping(path = "/{user_id}")
+    public ResponseEntity<Void> delete(@PathVariable(name = "user_id") Long id){
         this.userService.delete(id);
         return ResponseEntity.noContent().build();
     }

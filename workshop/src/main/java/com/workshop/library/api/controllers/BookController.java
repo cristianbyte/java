@@ -32,9 +32,12 @@ public class BookController {
     @GetMapping
     public ResponseEntity<Page<BookResponse>> getAll(
         @RequestParam(defaultValue = "1") int page,
-        @RequestParam(defaultValue = "10") int size) {
+        @RequestParam(defaultValue = "10") int size,
+        @RequestParam(defaultValue = "" ) String author,
+        @RequestParam(defaultValue = "" ) String title,
+        @RequestParam(defaultValue = "" ) String genre) {
 
-        return ResponseEntity.ok(this.bookService.getAll(page - 1, size));
+        return ResponseEntity.ok(this.bookService.getAll(page - 1, size, author, title , genre));
     }
 
     @GetMapping(path = "/{id}/reservations")
@@ -42,8 +45,8 @@ public class BookController {
         return ResponseEntity.ok(this.bookService.getOnlyReservations(id));
     }
 
-    @GetMapping(path = "/{id}")
-    public ResponseEntity<BookResponse> get(@PathVariable(name = "id") Long id) {
+    @GetMapping(path = "/{book_id}")
+    public ResponseEntity<BookResponse> get(@PathVariable(name = "book_id") Long id) {
         return ResponseEntity.ok(this.bookService.getById(id));
     }
 
@@ -52,13 +55,13 @@ public class BookController {
         return ResponseEntity.ok(this.bookService.create(bookRequest));
     }
 
-    @PutMapping(path = "/{id}")
-    public ResponseEntity<BookResponse> update(@PathVariable(name = "id") Long id, BookRequest bookRequest) {
+    @PutMapping(path = "/{book_id}")
+    public ResponseEntity<BookResponse> update(@PathVariable(name = "book_id") Long id, BookRequest bookRequest) {
         return ResponseEntity.ok(this.bookService.update(id, bookRequest));
     }   
 
-    @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable(name = "id") Long id) {
+    @DeleteMapping(path = "/{book_id}")
+    public ResponseEntity<Void> delete(@PathVariable(name = "book_id") Long id) {
         this.bookService.delete(id);
         return ResponseEntity.noContent().build();
     }

@@ -19,8 +19,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-06-21T13:34:52-0500",
-    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.38.0.v20240524-2033, environment: Java 17.0.11 (Eclipse Adoptium)"
+    date = "2024-07-08T11:00:47-0500",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.39.0.v20240620-1855, environment: Java 17.0.11 (Eclipse Adoptium)"
 )
 @Component
 public class UserMapperImpl implements UserMapper {
@@ -87,20 +87,20 @@ public class UserMapperImpl implements UserMapper {
     }
 
     @Override
-    public User requestToEntity(UserRequest userRequest) {
-        if ( userRequest == null ) {
+    public User requestToEntity(UserRequest request) {
+        if ( request == null ) {
             return null;
         }
 
-        User.UserBuilder user = User.builder();
+        User user = new User();
 
-        user.email( userRequest.getEmail() );
-        user.fullName( userRequest.getFullName() );
-        user.password( userRequest.getPassword() );
-        user.role( userRequest.getRole() );
-        user.userName( userRequest.getUserName() );
+        user.setEmail( request.getEmail() );
+        user.setFullName( request.getFullName() );
+        user.setPassword( request.getPassword() );
+        user.setRole( request.getRole() );
+        user.setUserName( request.getUserName() );
 
-        return user.build();
+        return user;
     }
 
     protected LoanResponse loanToLoanResponse(Loan loan) {

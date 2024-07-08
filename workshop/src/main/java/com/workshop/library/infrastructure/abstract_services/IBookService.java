@@ -8,8 +8,7 @@ import com.workshop.library.api.dto.response.BookResponse;
 
 public interface IBookService extends CrudAbstractService<BookRequest, BookResponse, Long> {
 
-    public Page<BookResponse> getAll(int page, int size);
+    public Page<BookResponse> getAll(int page, int size, String author, String title, String genre);
 
     public BookOnlyReservations getOnlyReservations(Long id);
-    
 }
