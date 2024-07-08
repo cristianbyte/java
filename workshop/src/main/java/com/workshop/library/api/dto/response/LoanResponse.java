@@ -15,6 +15,7 @@ import com.workshop.library.utils.enums.StatusType;
 @Builder
 public class LoanResponse {
 
+    private Long id;
     private LocalDateTime loanDate;
     private LocalDateTime returnDate;
     private StatusType status;

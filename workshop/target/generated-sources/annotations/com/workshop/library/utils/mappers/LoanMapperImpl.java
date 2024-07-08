@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-07-08T11:00:47-0500",
+    date = "2024-07-08T12:48:54-0500",
     comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.39.0.v20240620-1855, environment: Java 17.0.11 (Eclipse Adoptium)"
 )
 @Component
@@ -46,6 +46,7 @@ public class LoanMapperImpl implements LoanMapper {
 
         loanResponse.user_id( loanUserId( loan ) );
         loanResponse.book_id( loanBookId( loan ) );
+        loanResponse.id( loan.getId() );
         loanResponse.loanDate( loan.getLoanDate() );
         loanResponse.returnDate( loan.getReturnDate() );
         loanResponse.status( loan.getStatus() );

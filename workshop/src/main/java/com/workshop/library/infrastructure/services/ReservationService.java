@@ -26,7 +26,7 @@ public class ReservationService implements IReservationService {
 
     @Override
     public ReservationResponseFull getById(Long id) {
-        return reservationMapper.reservationToReservationResponseFull(this.findById(id));
+        return reservationMapper.reservationToReservationResponseFull(this.find(id));
     }
 
     @Override
@@ -37,18 +37,18 @@ public class ReservationService implements IReservationService {
 
     @Override
     public ReservationResponseFull update(Long id, ReservationRequest request) {
-        Reservation reservationToUpdate = this.findById(id);
+        Reservation reservationToUpdate = this.find(id);
         reservationMapper.updateFromReservationRequest(request, reservationToUpdate);
         return reservationMapper.reservationToReservationResponseFull(this.reservationRepository.save(reservationToUpdate));
     }
 
     @Override
     public void delete(Long id) {
-        this.findById(id);
+        this.find(id);
         this.reservationRepository.deleteById(id);
     }
 
-    private Reservation findById(Long id){
+    private Reservation find(Long id){
         return this.reservationRepository.findById(id).orElseThrow(() -> new BadRequestException(ErrorMessage.idNotFound("reservation")));
     }
     

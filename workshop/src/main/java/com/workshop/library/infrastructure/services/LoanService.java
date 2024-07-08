@@ -41,7 +41,7 @@ public class LoanService implements ILoanService{
         Loan loanToUpdate = this.find(id);
         loanMapper.updateFromloanRequest(request, loanToUpdate);
         loanToUpdate.setId(id);
-        return loanMapper.loanToloanResponse(loanToUpdate);
+        return loanMapper.loanToloanResponse(loanRepository.save(loanToUpdate));
     }
 
     @Override

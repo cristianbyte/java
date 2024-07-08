@@ -10,7 +10,7 @@ import com.workshop.library.api.dto.response.ReservationResponse;
 import com.workshop.library.api.dto.response.ReservationResponseFull;
 import com.workshop.library.domain.entities.Reservation;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE, uses = {UserMapper.class, BookMapper.class})
 public interface ReservationMapper {
 
     @Mapping(target = "id", ignore = true)
@@ -19,10 +19,8 @@ public interface ReservationMapper {
     @Mapping(target = "user.id" , source = "userId")
     @Mapping(target = "book.id" , source = "bookId")
     Reservation reservationRequestToReservation(ReservationRequest request);
-
+    
     ReservationResponse reservationToReservationResponse(Reservation reservation);
-
+    
     ReservationResponseFull reservationToReservationResponseFull(Reservation reservation);
-
-
 }
