@@ -45,6 +45,31 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- These libraries gives the facility to read, write and manipulate different Microsoft files such as excel sheet, power-point, and word files. -->
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi</artifactId>
+				<version>5.2.2</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi-ooxml</artifactId>
+				<version>5.2.2</version>
+			</dependency>
+
+			<!-- It's used to log messages within software and has the ability to communicate with other services on a system. -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-core</artifactId>
+				<version>2.19.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-api</artifactId>
+				<version>2.19.0</version>
+			</dependency>
+		<!-- ENd-->
 	</dependencies>
 
 	<build>
