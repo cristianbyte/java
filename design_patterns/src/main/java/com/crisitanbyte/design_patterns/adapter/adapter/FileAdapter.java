@@ -7,9 +7,9 @@ import com.crisitanbyte.design_patterns.adapter.model.Person;
 
 public class FileAdapter {
 
-    private InputFIle inputFIle;
+    private final InputFile inputFIle;
     
-    public FileAdapter(InputFIle inputFIle) {
+    public FileAdapter(InputFile inputFIle) {
         this.inputFIle = inputFIle;
     }
 

@@ -11,7 +11,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.crisitanbyte.design_patterns.adapter.model.Person;
 
-public class ExcelFileAdapter implements InputFIle{
+public class ExcelFileAdapter implements InputFile{
 
     @Override
     public List<Person> readFile(InputStream inputStream) {
@@ -22,10 +22,18 @@ public class ExcelFileAdapter implements InputFIle{
             List<Person> people = new ArrayList<>();
             for (int i = 1; i < sheet.getPhysicalNumberOfRows(); i++) {
                 Row row = sheet.getRow(i);
+                int cell = row.getFirstCellNum();
 
                 Person person = new Person();
                 person.setName(String.valueOf( row.getCell(cell)));
+                person.setLastName(String.valueOf(row.getCell(++cell)));
+                person.setAge((int) row.getCell(++cell).getNumericCellValue() );
+
+                people.add(person);
             }
+            workbook.close();
+            return people;
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -5,6 +5,6 @@ import java.util.List;
 
 import com.crisitanbyte.design_patterns.adapter.model.Person;
 
-public interface InputFIle {
+public interface InputFile {
     List<Person> readFile(InputStream inputStream);
 }
