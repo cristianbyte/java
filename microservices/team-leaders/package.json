@@ -1,12 +1,13 @@
 {
-  "name": "team-leaders",
+  "name": "micro-teams-leaders",
   "version": "1.0.0",
-  "description": "microservices",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.ts"
   },
-  "author": "cristianbyte",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "eureka-js-client": "^4.5.0",
@@ -17,6 +18,7 @@
     "typeorm": "^0.3.20"
   },
   "devDependencies": {
+    "@types/eureka-js-client": "^4.5.9",
     "@types/express": "^4.17.21",
     "@types/node": "^20.14.11",
     "ts-node-dev": "^2.0.0",
